@@ -77,6 +77,8 @@ getTipoEventos();
                                });
         ///FIN HACK
        $scope.createNewEvento = function () {
+		   $scope.formAlta.$valid=false;
+		   debugger
            EventosFactory.save($scope.evento,$scope.onSuccess);
 
        };

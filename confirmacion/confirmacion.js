@@ -75,34 +75,84 @@ angular.module('myApp.confirmacion', ['ngRoute', 'datatables','ngDialog','ngMask
                       //  plain: true
                    // });
        // } else {
-            var eventoEstado = new Object();
+		   
+		   
+		       ngDialog.openConfirm({
+                    template:
+                        '<p>Seguro quiere volver el evento a Waiting?</p>' +
+                        '<div>' +
+                          '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No&nbsp;' +
+                          '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Si' +
+                        '</button></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                }).then(function (value) {
+              
+          var eventoEstado = new Object();
             eventoEstado["idEstado"] = 2;
             eventoEstado["idEvento"] = id;
             eventoEstado["estadoActual"] = "Confirm";
 
             WaitingFactory.save(eventoEstado, $scope.onSuccessChangeState);
-
-
+                }, function (value) {
+                    //Do something 
+                });
 
        // }
 
     }
 
     function cancelEvent(id) {
-        var eventoEstado = new Object();
+		
+		
+		
+		    ngDialog.openConfirm({
+                    template:
+                        '<p>Seguro quiere cancelar el evento?</p>' +
+                        '<div>' +
+                          '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No&nbsp;' +
+                          '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Si' +
+                        '</button></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                }).then(function (value) {
+              
+            var eventoEstado = new Object();
         eventoEstado["idEvento"] = id;
         eventoEstado["idEstado"] = 5;
 
         EventosCancelFactory.update(eventoEstado, $scope.onSuccessCancel);
+                }, function (value) {
+                    //Do something 
+                });
+		
 
 
     }
     function cerrarEvento(id) {
-         var eventoEstado = new Object();
+		
+		
+		
+		    ngDialog.openConfirm({
+                    template:
+                        '<p>Seguro quiere cerrar el evento?</p>' +
+                        '<div>' +
+                          '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No&nbsp;' +
+                          '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Si' +
+                        '</button></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                }).then(function (value) {
+              
+              var eventoEstado = new Object();
             eventoEstado["idEstado"] = 5;
             eventoEstado["idEvento"] = id;
 
             WaitingFactory.save(eventoEstado, $scope.onSuccessCerrarEvento);
+                }, function (value) {
+                    //Do something 
+                });
+		
 
 
        }

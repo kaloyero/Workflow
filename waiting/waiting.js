@@ -122,7 +122,20 @@ angular.module('myApp.waiting', ['ngRoute', 'datatables','ngDialog','ngMask'])
                };
     $scope.saveChangeState =function () {
         console.log("SCCO",$scope)
-         var eventoEstado = new Object();
+		
+		
+		    ngDialog.openConfirm({
+                    template:
+                        '<p>Seguro quiere pasar el evento a Confirm?</p>' +
+                        '<div>' +
+                          '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No&nbsp;' +
+                          '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Si' +
+                        '</button></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                }).then(function (value) {
+              
+      var eventoEstado = new Object();
          eventoEstado["idEvento"] = $scope.idEvento;
          eventoEstado["idEstado"] = 3;
          eventoEstado["IdUsuarioProductor"]=$scope.evento["Productor"][0]["Id"];
@@ -131,15 +144,48 @@ angular.module('myApp.waiting', ['ngRoute', 'datatables','ngDialog','ngMask'])
 
 
         WaitingFactory.save(eventoEstado, $scope.onSuccessChangeState);
+                }, function (value) {
+                    //Do something 
+                });
+		
 
      }
     function cancelEvent(id) {
-        var eventoEstado = new Object();
+		
+		    ngDialog.openConfirm({
+                    template:
+                        '<p>Seguro quiere cancelar el evento?</p>' +
+                        '<div>' +
+                          '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No&nbsp;' +
+                          '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Si' +
+                        '</button></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                }).then(function (value) {
+              
+            var eventoEstado = new Object();
         eventoEstado["idEvento"] = id;
         eventoEstado["idEstado"] = 5;
 
         EventosCancelFactory.update(eventoEstado, $scope.onSuccessCancel);
         vm.dtInstance.reloadData();
+
+            WaitingFactory.save(eventoEstado, $scope.onSuccessChangeState);
+                }, function (value) {
+                    //Do something 
+                });
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        
 
     }
       $scope.onSuccessRenegociar = function (data) {
@@ -159,7 +205,23 @@ angular.module('myApp.waiting', ['ngRoute', 'datatables','ngDialog','ngMask'])
 
     }
     function renegociar(idEvento) {
-          EventosFactory.query({ id: idEvento },$scope.onSuccessRenegociar)
+		
+		    ngDialog.openConfirm({
+                    template:
+                        '<p>Seguro quiere renegociar el evento??</p>' +
+                        '<div>' +
+                          '<button type="button" class="btn btn-default" ng-click="closeThisDialog(0)">No&nbsp;' +
+                          '<button type="button" class="btn btn-primary" ng-click="confirm(1)">Si' +
+                        '</button></div>',
+                    plain: true,
+                    className: 'ngdialog-theme-default'
+                }).then(function (value) {
+                     EventosFactory.query({ id: idEvento },$scope.onSuccessRenegociar)
+
+                }, function (value) {
+                    //Do something 
+                });
+		
 
       }
       function getProductores(callback) {
