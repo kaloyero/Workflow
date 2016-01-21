@@ -1,0 +1,93 @@
+<form novalidate  class="form-horizontal"  name="formAlta" ng-submit="renegociarEvento()">
+<h4 class="sub-header">Datos</h4>
+
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-textarea-input">Comentarios</label>
+<div class="col-md-5">
+<textarea id="example-textarea-input" name="example-textarea-input" ng-model="evento.Comentario" rows="4" class="form-control" placeholder=""  maxlength="100"></textarea>
+</div>
+
+</div>
+
+
+<div class="form-group"><label class="col-md-2 control-label" for="example-input3-group1">Total Budget</label>
+<div class="input-group">
+<span class="input-group-addon"><i class="icon-dollar"></i></span>
+<input type="text"  number-mask name="budget" ng-model="evento.TotalBudget"  maxlength="11" class="form-control" style="
+    width: 30%;
+" required >
+<span class="help-block">Monto estimado para la cotización del evento</span>
+<span style="color:red" id="spanBudgetError" class="ng-hide">
+<span >Requerido Formato 1.11</span>
+
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-datepicker">Presentacion *</label>
+<div class="col-md-10">
+<label class="radio-inline" for="example-inline-radio1">
+<input type="text"  name="fechaPresentacion" ng-model="evento.FechaPresentacion" class="form-control input-datepickerPresentacion text-center" data-date-format="mm/dd/yy" placeholder="mm/dd/yy" required >
+<span class="help-block">Fecha</span>
+<span style="color:red" ng-show="formAlta.$submitted || formAlta.fechaPresentacion.$touched">
+<span ng-show="formAlta.fechaPresentacion.$error.required">Requerido.</span>
+</div>
+</div>
+
+
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-select">Usuario Comercial *</label>
+<div class="col-md-2">
+<div isteven-multi-select="" input-model="usuarios" output-model="evento.IdComercial" button-label="icon Nombre" item-label="icon Nombre maker" tick-property="ticked" class="ng-isolate-scope" selection-mode="single"></div>
+<input type="text" ng-model="evento.IdUsuarioComercial" name="datosUsuario" style="display:none" required />
+<span style="color:red" id="spanUsuarioError" class="ng-hide">
+<span >Requerido.</span>
+
+</div>
+</div>
+
+
+
+<div class="form-group">
+<div class="col-md-5 col-md-offset-2">
+<button type="submit" class="btn btn-primary" data-ng-disabled='!formAlta.$valid'><i class="icon-arrow-right"></i> Renegociar </button>
+</div>
+</div>
+
+</form>
+</div>
+</div>
+
+</form>
+<script src="js/vendor/bootstrap.min-1.03.js"></script>
+
+<script src="js/plugins-1.03.js"></script>
+
+
+<script src="js/main-1.03.js"></script>
+<script>
+var today = new Date(); //Get today's date
+
+
+    $('.input-datepickerPresentacion').datepicker({
+        format: 'yyyy-mm-dd', startDate: today,
+        onChangeDate: function(selected) {
+			console.log("select")
+
+            $(".input-datepickerEvento").datepicker("option", "maxDate", selected)
+
+        }
+    })
+
+
+
+
+
+
+
+
+
+</script>

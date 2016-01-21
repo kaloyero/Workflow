@@ -1,0 +1,235 @@
+<div id="fx-container" class="fx-opacity"><div id="page-content" class="block">
+<div class="block-header">
+<a href="#" class="header-title-link">
+<h1>
+<i class="icon-wrench animation-expandUp"></i>Nuevo Evento<br><small>Puede dar de alta un nuevo evento para comenzar su seguimiento</small>
+</h1>
+</a>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+<li><i class="icon-edit"></i></li>
+<li>Eventos</li>
+<li><a href="#">Alta</a></li>
+</ul>
+<div class="block">
+<div class="block-title">
+<h2>Alta Nuevo Evento</h2>
+</div>
+<form novalidate  class="form-horizontal"  name="formAlta" ng-submit="createNewEvento()">
+<h4 class="sub-header">Datos</h4>
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-select">Cliente *</label>
+<div class="col-md-2">
+<div id ="selectCliente" isteven-multi-select="" input-model="clientes" output-model="evento.clienteId" button-label="icon RazonSocial" item-label="icon RazonSocial maker" tick-property="ticked" class="ng-isolate-scope" selection-mode="single" class="resultDataSelect"></div>
+<input type="text" ng-model="evento.clienteId" name="datos" style="display:none" required />
+<span style="color:red" id="spanClienteError" class="ng-hide">
+<span >Requerido.</span>
+
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-text-input">Nombre *</label>
+<div class="col-md-3">
+<input type="text" name="nombre" ng-model="evento.nombre" class="form-control" required=""  maxlength="50" placeholder="nombre del evento">
+<!--<span class="help-block">Nombre del evento</span>-->
+
+<span style="color:red" ng-show="formAlta.$submitted || formAlta.nombre.$touched">
+<span ng-show="formAlta.nombre.$error.required">Requerido.</span>
+</div>
+</div>
+
+
+<div class="form-group"><label class="col-md-2 control-label" for="example-input3-group1">Total Budget</label>
+<div class="input-group">
+<span class="input-group-addon"><i class="icon-dollar"></i></span>
+<input type="text" name="budget" ng-model="evento.budget"  mask='d' restrict="reject" validate="false" repeat="12" class="form-control" style="
+    width: 30%;
+" required>
+<span class="help-block">Monto estimado para la cotización del evento</span>
+<span style="color:red" ng-show="formAlta.$submitted || formAlta.budget.$touched">
+<span ng-show="formAlta.budget.$error.required">Requerido.</span>
+
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-datepicker">Fechas Evento * </label>
+<div class="col-md-10">
+<label class="radio-inline" for="example-inline-radio1">
+<input type="text"  name="fechaEvento" ng-model="evento.fechaDesde" class="form-control input-datepickerEvento text-center" data-date-format="mm/dd/yy" placeholder="dd/mm/yyyy" required>
+<span class="help-block">Desde</span>
+<span style="color:red" ng-show="formAlta.$submitted || formAlta.fechaEvento.$touched">
+<span ng-show="formAlta.fechaEvento.$error.required">Requerido.</span>
+
+</label>
+<label class="radio-inline" for="example-inline-radio1">
+<input type="text" name="fechaHasta" ng-model="evento.fechaHasta" class="form-control input-datepickerHasta text-center" data-date-format="mm/dd/yy" placeholder="dd/mm/yyyy" required>
+<span class="help-block">Hasta</span>
+<span style="color:red" ng-show="formAlta.$submitted || formAlta.fechaHasta.$touched">
+<span ng-show="formAlta.fechaHasta.$error.required">Requerido.</span>
+
+</label>
+
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-password-input">Fecha de Evento Alternativa</label>
+<div class="col-md-2">
+<div class="checkbox">
+<label for="example-checkbox1">
+<input type="checkbox" id="example-checkbox1" name="alternativa" value="si" ng-model="evento.alternativa"> SI
+</label>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-datepicker">Presentacion *</label>
+<div class="col-md-10">
+<label class="radio-inline" for="example-inline-radio1">
+<input type="text"  name="fechaPresentacion" ng-model="evento.fechaPresentacion" class="form-control input-datepickerPresentacion text-center" data-date-format="mm/dd/yy" placeholder="dd/mm/yyyy" required >
+<span class="help-block">Fecha</span>
+<span style="color:red" ng-show="formAlta.$submitted || formAlta.fechaPresentacion.$touched">
+<span ng-show="formAlta.fechaPresentacion.$error.required">Requerido.</span>
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-password-input">Pax </label>
+<div class="col-md-3">
+
+<input type="text" ng-model="evento.pax" class="form-control" mask='d' restrict="reject" validate="false" repeat="9" >
+
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-select">Tipo Evento</label>
+<div class="col-md-2">
+<div isteven-multi-select="" input-model="tipoEventos" output-model="evento.tipoEvento" button-label="icon Nombre" item-label="icon Nombre maker" tick-property="ticked" class="ng-isolate-scope" selection-mode="single"></div>
+<input type="text" ng-model="evento.tipoEventoId" name="datoTipoEvento" style="display:none"  />
+
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-textarea-input">Comentarios</label>
+<div class="col-md-5">
+<textarea id="example-textarea-input" name="example-textarea-input" ng-model="evento.comentario" rows="4" class="form-control" placeholder=""  maxlength="100"></textarea>
+</div>
+</div>
+
+<div class="form-group"><label class="col-md-2 control-label" for="example-input3-group1">Presupuesto</label>
+<div class="input-group">
+<span class="input-group-addon"><i class="icon-dollar"></i></span>
+<input type="text"  mask='d' restrict="reject" validate="false" repeat="12" name="presupuesto" ng-model="evento.presupuesto" class="form-control" style="
+    width: 30%;
+" >
+
+</div>
+</div>
+
+
+
+
+
+
+<!--
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-select">Cliente</label>
+<div class="col-md-2">
+<select class="form-control" size="1" required="" id="cliente"  ng-model="evento.clienteId" name="clienteId" >
+	<option>a</option>
+	<option>a</option>
+</select>
+<span style="color:red" ng-show="formAlta.$submitted || formAlta.clienteId.$touched">
+<span ng-show="formAlta.clienteId.$error.required">Requerido.</span>
+</div>
+</div>-->
+
+
+<div class="form-group">
+<label class="col-md-2 control-label" for="example-select">Usuario Comercial *</label>
+<div class="col-md-2">
+<div isteven-multi-select="" input-model="usuarios" output-model="evento.usuarioId" button-label="icon Nombre" item-label="icon Nombre maker" tick-property="ticked" class="ng-isolate-scope" selection-mode="single"></div>
+<input type="text" ng-model="evento.usuarioId" name="datosUsuario" style="display:none" required />
+<span style="color:red" id="spanUsuarioError" class="ng-hide">
+<span >Requerido.</span>
+
+</div>
+</div>
+
+
+
+
+
+
+<div class="form-group">
+<div class="col-md-5 col-md-offset-2">
+<button type="submit" class="btn btn-primary" data-ng-disabled='!formAlta.$valid'><i class="icon-arrow-right"></i> Crear Evento</button>
+</div>
+</div>
+
+</form>
+</div>
+</div>
+
+</form>
+<script src="js/vendor/bootstrap.min-1.03.js"></script>
+
+<script src="js/plugins-1.03.js"></script>
+
+
+<script src="js/main-1.03.js"></script>
+<script>
+var today = new Date(); //Get today's date
+
+$(".input-datepickerr").datepicker({
+    startDate: today
+});
+
+ $('.input-datepickerEvento').datepicker({
+        format: 'dd-mm-yyyy',minDate: 0, startDate: today
+    })	.on('changeDate', function (selected) {
+		       console.log("ASDasdaasdad",selected)
+
+			     $('.input-datepickerPresentacion').datepicker('setEndDate', selected.date);
+			$('.input-datepickerHasta').datepicker('setStartDate', selected.date);
+		    });
+
+
+    $('.input-datepickerPresentacion').datepicker({
+        format: 'dd-mm-yyyy', startDate: today
+    }).on('changeDate', function (selected) {
+		       console.log("ASDasdaasdad")
+
+			        $('.input-datepickerEvento').datepicker('setStartDate', selected);
+		    });
+
+
+
+
+
+	$('.input-datepickerHasta').datepicker({
+        format: 'dd-mm-yyyy', startDate: today
+    }).on('changeDate', function (selected) {
+	       console.log("ASDasdaasdad")
+
+		        $('.input-datepickerEvento').datepicker('setEndDate', selected);
+	    });
+
+
+
+
+
+
+
+
+
+</script>

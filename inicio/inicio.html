@@ -1,0 +1,89 @@
+
+
+	<div id="fx-container" class="fx-opacity"><div id="page-content" class="block">
+		<div class="block-header">
+	        <div class="row remove-margin">
+	          <div class="col-md-4"> <a href="#" class="header-title-link">
+	            <h1><i class="icon-coffee animation-expandUp"></i>APUNTE<br>
+	              <small>Rubra Eventos</small></h1>
+	            </a> </div>
+	          <div class="col-md-8">
+	            <div class="row">
+	              <div class="col-sm-6">
+	                <div class="row">
+	                  <div class="col-xs-6" 	style="
+						    background-color: rgba(115, 19, 19, 0.98);
+						"> <a href="#pending" class="header-link">
+	                    <h1 class="animation-pullDown"><span  ng:bind="pending"></span><br>
+	                      <small >Pending</small>
+						</h1>
+	                    </a> </div>
+	                  <div class="col-xs-6" 	style="
+						    background-color: rgba(140, 105, 4, 0.98)
+						"> <a href="#waiting" class="header-link">
+	                    <h1 class="animation-pullDown"><span  ng:bind="waiting"></span><br>
+	                      <small>Waiting</small></h1>
+	                    </a> </div>
+	                </div>
+	              </div>
+	              <div class="col-sm-6">
+	                <div class="row">
+	                  <div class="col-xs-6" 	style="
+						    background-color: rgba(21, 88, 31, 0.98)
+						"> <a href="#confirmacion" class="header-link">
+	                    <h1 class="animation-pullDown"><span  ng:bind="confirm"></span><br>
+	                      <small>Confirm</small></h1>
+	                    </a> </div>
+	                  <div class="col-xs-6" 	style="
+						    background-color: rgba(21, 28, 88, 0.98)
+						"> <a href="#facturacion" class="header-link">
+	                    <h1 class="animation-pullDown"><span  ng:bind="facturacion"></span><br>
+	                      <small>Facturacion</small></h1>
+	                    </a> </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	<ul class="breadcrumb breadcrumb-top">
+	<li><i class="icon-th"></i></li>
+	<li>Inicio</li>
+	<li><a href="#">Accessos</a></li>
+	</ul>
+	<div ng-controller="InicioCtrl as lista">
+	<div class="block">
+	<div class="block-title">
+	<h2>Notificaciones de Cambio</h2>
+	</div>
+
+	<div class="clearfix">
+
+
+	</div>
+
+	<div   class="table-responsive">
+		<div>
+
+		    <table datatable dt-options="lista.dtOptions" dt-columns="lista.dtColumns" dt-instance="lista.dtInstance" class="table table-bordered table-hover"></table>
+		</div>
+	</div>
+	</div>
+	<div class="block">
+	<div class="block-title">
+	<h2>Notificaciones a vencer</h2>
+	</div>
+
+	<div  class="table-responsive">
+		<div>
+
+		    <table datatable dt-options="lista.dtOptionsVencer" dt-columns="lista.dtColumnsVencer" dt-instance="lista.dtInstanceVencer" class="table table-bordered table-hover"></table>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+
+
+</div>
+
